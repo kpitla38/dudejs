@@ -1,11 +1,9 @@
 #!/usr/bin/env node
+'use strict';
 
-var program = require('commander'),
+var args = require('minimist')(process.argv.slice(2)),
     pkg = require('../package.json');
 
 var version = pkg.version;
 
-program.version(version)
-    .usage('<command> [options]');
-
-program.parse(process.argv);
+console.dir(args);
