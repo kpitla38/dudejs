@@ -5,7 +5,6 @@
   "bin": {
       "dude": "bin/dude"
   },
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
