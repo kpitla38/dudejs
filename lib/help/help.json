@@ -1,0 +1,12 @@
+{
+    "Usage": "dude <command> [options] [arguments]",
+    "Commands": {
+        "new": "Create a new dudejs application",
+        "install": "Install dependencies using bower and npm",
+        "version": "Show the current version of dudejs",
+        "help": "Show help information and exit"
+    },
+    "Options": {
+        "-f": "Makes commands more forceful"
+    }
+}

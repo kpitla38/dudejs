@@ -1,0 +1,4 @@
+{
+    "Usage": "dude new [app]",
+    "Description": "Create a new dudejs project inside the [app] directory [app]"
+}

@@ -1,9 +1,29 @@
 #!/usr/bin/env node
+
 'use strict';
 
-var args = require('minimist')(process.argv.slice(2)),
-    pkg = require('../package.json');
+var args = require('minimist')(process.argv.slice(2), { 'boolean': ['f', 'b']}),
+    cli = require('../lib/cli/cli');
 
-var version = pkg.version;
+var commands = cli.commands(args);
 
-console.dir(args);
+var opts = cli.options(args);
+var comd = commands.shift();
+var carg = commands.join(' ');
+
+switch(comd){
+    case 'new':
+        cli.make(carg);
+        break;
+    case 'install':
+        cli.install(carg, opts);
+        break;
+    case 'version':
+        cli.version();
+        break;
+    default:
+        cli.help(carg);
+}
+
+//console.log(carg);
+//console.log(opts);
