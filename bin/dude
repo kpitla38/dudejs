@@ -7,7 +7,7 @@
 // rename helper to renderer
 
 'use strict';
-var cli = require('../lib/cli/cli'),
+var cli = require('../lib/utils/cli'),
     args = cli.read(process.argv.slice(2));
 
 var commands = args.commands;
@@ -17,8 +17,8 @@ var command = commands.shift();
 var argument = commands.join(' ');
 
 switch(command){
-    case 'new':
-        cli.make(argument);
+    case 'craft':
+        cli.craft(argument);
         break;
     case 'install':
         cli.install(argument, options);
