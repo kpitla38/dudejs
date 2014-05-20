@@ -3,6 +3,8 @@ DudeJS
 
 Yet another framework to create API driven restful apps using NodeJS backend and AngularJS frontend
 
+*Notice:* DudeJS is still under development. Feel free to fork the repository and experiment.
+ 
 ##License
 
 The MIT License (MIT)
