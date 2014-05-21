@@ -24,7 +24,8 @@
     "lodash": "~2.4.1",
     "chalk": "~0.4.0",
     "mout": "~0.9.1",
-    "handlebars": "~2.0.0-alpha.4"
+    "handlebars": "~2.0.0-alpha.4",
+    "winston": "~0.7.3"
   },
   "devDependencies": {
     "chai": "~1.9.1",
