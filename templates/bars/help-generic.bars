@@ -1,0 +1,20 @@
+
+Usage:
+
+{{#condense}}
+{{#each usage}}
+    {{#cyan}}dude{{/cyan}} {{.}}
+{{/each}}
+{{/condense}}
+{{#if options}}
+Options:
+
+{{#condense}}
+{{#each options}}
+    {{#rpad length="20"}}{{#if shorthand}}{{shorthand}}, {{/if}}{{flag}}{{/rpad}} {{description}}
+{{/each}}
+{{/condense}}
+{{/if}}
+Description:
+
+    {{#indent level="8"}}{{description}}{{/indent}}

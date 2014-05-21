@@ -1,0 +1,18 @@
+
+Usage:
+
+{{#condense}}
+{{#each usage}}
+    {{#cyan}}dude{{/cyan}} {{.}}
+{{/each}}
+{{/condense}}
+
+Commands:
+
+{{#condense}}
+{{#each commands}}
+    {{#rpad length="20"}}{{@key}}{{/rpad}} {{.}}
+{{/each}}
+{{/condense}}
+
+Type 'dude help <command>' to know more about a specific command.
