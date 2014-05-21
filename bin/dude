@@ -1,13 +1,15 @@
 #!/usr/bin/env node
 
 // TODO
-// utilities folder (cli, template)
-// base templates folder (helpers, std)
 // base framework folder (contains out dudejs framework)
 // rename helper to renderer
+// clean up & refactor application
+// Error handling for commands
+
 
 'use strict';
 var cli = require('../lib/utils/cli'),
+    chalk = require('chalk'),
     args = cli.read(process.argv.slice(2));
 
 var commands = args.commands;
@@ -16,19 +18,28 @@ var options = args.options;
 var command = commands.shift();
 var argument = commands.join(' ');
 
-switch(command){
-    case 'craft':
-        cli.craft(argument);
-        break;
-    case 'install':
-        cli.install(argument, options);
-        break;
-    case 'version':
-        cli.version();
-        break;
-    default:
-        cli.help(argument);
+if(command === undefined || command){
+    switch(command){
+        case 'new':
+            cli.make(argument);
+            break;
+        case 'install':
+            cli.install(argument, options);
+            break;
+        case 'version':
+            cli.version();
+            break;
+        default:
+            cli.help(argument);
+    }
+} else {
+    console.log(chalk.red('Error: ' + 'Unrecognized command ' + command));
+    process.exit(1);
 }
 
-//console.log(carg);
-//console.log(options);
+
+/**
+ * Debug info here
+ */
+//console.log(command);
+//console.log(argument);
