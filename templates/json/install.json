@@ -1,6 +1,7 @@
 {
-    "usage": ["install [module] [options]"],
+    "command": "install",
     "description": "Create a new dudejs project inside the [app] directory",
+    "usage": ["install [module] [options]"],
     "options": [
         {
             "flag": "-f",
