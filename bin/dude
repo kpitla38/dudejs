@@ -7,7 +7,7 @@ var dude = require('../lib');
 var cli = require('../lib/utils/cli');
 var renderer = require('../lib/utils/renderer');
 
-var logger;
+var event;
 
 var raw_args = parser(process.argv.slice(2));
 var args = cli.read(raw_args);
@@ -16,12 +16,12 @@ var command = args.commands.shift() || 'help';
 var argument = args.commands.join(' ') || undefined;
 
 // New Todo
-// Remove this and try executing a command, and then return control to logger which
+// Remove this and try executing a command, and then return control to event which
 // further handles control to renderer. Keeps the application neatly organized.
 
 // Include this code in the default section of switch statement
 // Switching on command enabled. Check for any argument inside default
-// Every case in switch further returns a logger instance.
+// Every case in switch further returns a event instance.
 
 switch(command){
     case 'new':
@@ -35,17 +35,17 @@ switch(command){
         break;
     default:
         if(mout.object.has(dude.commands, command)){
-            logger = dude.commands.help(argument);
+            event = dude.commands.help(argument);
         } else {
-            logger = dude.commands.help();
+            event = dude.commands.help();
         }
 }
 
-logger.on('error', function(err){
+event.on('error', function(err){
     renderer.error(err);
     process.exit(1);
 });
-logger.on('success', function(data){
+event.on('success', function(data){
     renderer.success(data);
 });
 /**
