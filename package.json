@@ -1,6 +1,6 @@
 {
   "name": "dudejs",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Yet another framework to create API driven restful apps using NodeJS backend and AngularJS frontend",
   "preferGlobal": true,
   "bin": {
