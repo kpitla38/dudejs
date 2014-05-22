@@ -1,45 +1,56 @@
 #!/usr/bin/env node
 
-// TODO
-// base framework folder (contains out dudejs framework)
-// rename helper to renderer
-// clean up & refactor application
-// Error handling for commands
-
-
 'use strict';
-var cli = require('../lib/utils/cli'),
-    chalk = require('chalk'),
-    args = cli.read(process.argv.slice(2));
+var parser = require('minimist');
+var mout = require('mout');
+var dude = require('../lib');
+var cli = require('../lib/utils/cli');
+var renderer = require('../lib/utils/renderer');
 
-var commands = args.commands;
-var options = args.options;
+var logger;
 
-var command = commands.shift();
-var argument = commands.join(' ');
+var raw_args = parser(process.argv.slice(2));
+var args = cli.read(raw_args);
 
-if(command === undefined || command){
-    switch(command){
-        case 'new':
-            cli.make(argument);
-            break;
-        case 'install':
-            cli.install(argument, options);
-            break;
-        case 'version':
-            cli.version();
-            break;
-        default:
-            cli.help(argument);
-    }
-} else {
-    console.log(chalk.red('Error: ' + 'Unrecognized command ' + command));
-    process.exit(1);
+var command = args.commands.shift() || 'help';
+var argument = args.commands.join(' ') || undefined;
+
+// New Todo
+// Remove this and try executing a command, and then return control to logger which
+// further handles control to renderer. Keeps the application neatly organized.
+
+// Include this code in the default section of switch statement
+// Switching on command enabled. Check for any argument inside default
+// Every case in switch further returns a logger instance.
+
+switch(command){
+    case 'new':
+        cli.make(argument);
+        break;
+    case 'install':
+        cli.install(argument, args.options);
+        break;
+    case 'version':
+        cli.version();
+        break;
+    default:
+        if(mout.object.has(dude.commands, command)){
+            logger = dude.commands.help(argument);
+        } else {
+            logger = dude.commands.help();
+        }
 }
 
-
+logger.on('error', function(err){
+    renderer.error(err);
+    process.exit(1);
+});
+logger.on('success', function(data){
+    renderer.success(data);
+});
 /**
  * Debug info here
  */
-//console.log(command);
-//console.log(argument);
+//console.dir(args.commands);
+//console.dir(args.options);
+//console.dir(argument);
