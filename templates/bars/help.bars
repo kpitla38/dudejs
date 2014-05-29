@@ -15,4 +15,5 @@ Commands:
 {{/each}}
 {{/condense}}
 
-Type 'dude help <command>' to know more about a specific command.
+
+Type `dude help <command>` to know more about a specific command.

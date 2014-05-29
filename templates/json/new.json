@@ -1,5 +1,5 @@
 {
     "command": "new",
-    "description": "Create a new dudejs project inside the [app] directory",
-    "usage": ["new [app]"]
+    "description": "Create a new dudejs project inside the `app` directory",
+    "usage": ["new <app>"]
 }

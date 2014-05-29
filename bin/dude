@@ -5,36 +5,35 @@ var parser = require('minimist');
 var mout = require('mout');
 var dude = require('../lib');
 var cli = require('../lib/utils/cli');
-var renderer = require('../lib/utils/renderer');
+var ver = require('../package.json').version;
 
 var event;
 
 var raw_args = parser(process.argv.slice(2));
 var args = cli.read(raw_args);
 
-var command = args.commands.shift() || 'help';
+var command = args.commands.shift() || '';
 var argument = args.commands.join(' ') || undefined;
 
-// New Todo
-// Remove this and try executing a command, and then return control to event which
-// further handles control to renderer. Keeps the application neatly organized.
+if(!mout.object.has(dude.commands, command)){
+    if(command === "version"){
+        process.stdout.write(ver + '\n');
+        process.exit();
+    } else {
+        command = 'help';
+    }
+}
 
-// Include this code in the default section of switch statement
-// Switching on command enabled. Check for any argument inside default
-// Every case in switch further returns a event instance.
-
+var renderer = cli.renderer(command);
 switch(command){
     case 'new':
-        cli.make(argument);
+        event = dude.commands.new(argument);
         break;
     case 'install':
         cli.install(argument, args.options);
         break;
-    case 'version':
-        cli.version();
-        break;
     default:
-        if(mout.object.has(dude.commands, command)){
+        if(argument){
             event = dude.commands.help(argument);
         } else {
             event = dude.commands.help();
@@ -44,10 +43,12 @@ switch(command){
 event.on('error', function(err){
     renderer.error(err);
     process.exit(1);
-});
-event.on('success', function(data){
+}).on('log', function(data){
+  renderer.log(data);
+}).on('success', function(data){
     renderer.success(data);
 });
+
 /**
  * Debug info here
  */

@@ -1,0 +1,3 @@
+; Top level app settings
+[app]
+  name = {{ name }}
