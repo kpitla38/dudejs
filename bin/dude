@@ -43,7 +43,7 @@ switch(command){
 event.on('error', function(err){
     renderer.error(err);
     process.exit(1);
-}).on('log', function(data){
+}).on('log', function(data, level){
   renderer.log(data);
 }).on('success', function(data){
     renderer.success(data);
