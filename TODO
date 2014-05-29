@@ -1,0 +1,20 @@
+Todo May 22nd
+
+1. Remove this and try executing a command, and then return control to event which
+   further handles control to renderer. Keeps the application neatly organized.
+
+2. Include this code in the default section of switch statement
+   Switching on command enabled. Check for any argument inside default
+   Every case in switch further returns a event instance.
+
+3. Go through bower source once again thoroughly, read how the project is
+   organized, go through main files, and try follow that pattern.
+
+4. Remove eventbus as its no longer needed
+   Create a custom module to print out to the
+   console
+
+5. Write necessary tests to programatically verify that
+   all everything is working as expected.
+
+6. Make renderer a standard class and let cli make an instance of it
